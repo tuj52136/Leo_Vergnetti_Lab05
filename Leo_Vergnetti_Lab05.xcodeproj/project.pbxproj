@@ -13,6 +13,8 @@
 		D0279B50224D1F050092D07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0279B4F224D1F050092D07C /* Assets.xcassets */; };
 		D0279B53224D1F050092D07C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0279B51224D1F050092D07C /* LaunchScreen.storyboard */; };
 		D0279B5E224D1F050092D07C /* Leo_Vergnetti_Lab05Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0279B5D224D1F050092D07C /* Leo_Vergnetti_Lab05Tests.swift */; };
+		D0279B69224D20BF0092D07C /* PigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0279B68224D20BF0092D07C /* PigModel.swift */; };
+		D0279B6C224D260B0092D07C /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0279B6A224D245D0092D07C /* Dice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		D0279B59224D1F050092D07C /* Leo_Vergnetti_Lab05Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Leo_Vergnetti_Lab05Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0279B5D224D1F050092D07C /* Leo_Vergnetti_Lab05Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leo_Vergnetti_Lab05Tests.swift; sourceTree = "<group>"; };
 		D0279B5F224D1F050092D07C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0279B68224D20BF0092D07C /* PigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigModel.swift; sourceTree = "<group>"; };
+		D0279B6A224D245D0092D07C /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 				D0279B48224D1F040092D07C /* AppDelegate.swift */,
 				D0279B4A224D1F040092D07C /* ViewController.swift */,
 				D0279B4C224D1F040092D07C /* Main.storyboard */,
+				D0279B68224D20BF0092D07C /* PigModel.swift */,
+				D0279B6A224D245D0092D07C /* Dice.swift */,
 				D0279B4F224D1F050092D07C /* Assets.xcassets */,
 				D0279B51224D1F050092D07C /* LaunchScreen.storyboard */,
 				D0279B54224D1F050092D07C /* Info.plist */,
@@ -197,7 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0279B69224D20BF0092D07C /* PigModel.swift in Sources */,
 				D0279B4B224D1F040092D07C /* ViewController.swift in Sources */,
+				D0279B6C224D260B0092D07C /* Dice.swift in Sources */,
 				D0279B49224D1F040092D07C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
