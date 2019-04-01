@@ -9,7 +9,7 @@
 import Foundation
 
 struct Dice {
-    public func rollDice() -> Int{
+    public static func roll() -> Int{
         return Int.random(in: 1...6)
     }
 }

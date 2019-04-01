@@ -10,36 +10,38 @@ import XCTest
 @testable import Leo_Vergnetti_Lab05
 
 class Leo_Vergnetti_Lab05Tests: XCTestCase {
-
+    var game = PigModel()
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        game = PigModel()
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testPigInitSetsPlayerScoresToZero(){
-        let game = PigModel()
-        XCTAssert(game.getPlayer1Score() == 0, "player1score should = 0 on init")
-        XCTAssert(game.getPlayer2Score() == 0, "Player 2 score should be 0 on init")
+    
+    func rollMultiple(diceValue : Int, numberOfRolls: Int){
+        for _ in 1 ... numberOfRolls {
+            game.processRoll(playerRolled: diceValue)
+        }
     }
     
-    func testScoreAccumulatorShouldInitToZero(){
-        let game = PigModel()
+    func testPigInitSetsPlayerScoresToZero(){
+        
+        XCTAssert(game.getScore(forPlayer: 1) == 0, "player1score should = 0 on init")
+        XCTAssert(game.getScore(forPlayer: 2) == 0, "Player 2 score should be 0 on init")
         XCTAssert(game.getScoreAccumulator() == 0, "Score Accumulator should init to 0")
     }
     
     func testRollDiceReturnsValueBetween1And6(){
-        let dice = Dice()
-        let roll = dice.rollDice()
-        XCTAssert(roll <= 6 && roll >= 1,  "dice roll must be between 1 and 6")
+        for _ in 1 ... 25{
+            let roll = Dice.roll()
+            XCTAssert(roll <= 6 && roll >= 1,  "dice roll must be between 1 and 6")
+        }
     }
     
     func testPigShouldAddDieRollToAccumulator(){
-        var game = PigModel()
-        game.rollDice()
-        XCTAssert(game.getScoreAccumulator() != 0, "Rolling the dice should add to accumulator")
+        game.processRoll(playerRolled: 2)
+        XCTAssert(game.getScoreAccumulator() == 2, "Rolling the dice should add to accumulator")
     }
     
     func testPigShouldDefaultToPlayerOneTurn(){
@@ -48,48 +50,43 @@ class Leo_Vergnetti_Lab05Tests: XCTestCase {
     }
     
     func testTurnEndShouldChangeToNextPlayerTurn(){
-        var game = PigModel()
         game.endCurrentTurn()
         XCTAssert(game.isPlayer1Turn() == false, "Should now be player 2's turn after changing")
     }
     
-    func testSequentialDiceRollsAddPointsToAccumulator(){
-        var game = PigModel()
-        game.rollDice()
-        let dieValue1 = game.getScoreAccumulator()
-        game.rollDice()
-        let dieValue2 = game.getScoreAccumulator() - dieValue1
-        XCTAssert(dieValue2 >= 1 && dieValue2 <= 6, "Accumulator is summing correctly")
+    func testSequentialDiceRollsSumPointsInAccumulator(){
+        rollMultiple(diceValue: 2, numberOfRolls: 2)
+        XCTAssert(game.getScoreAccumulator() == 4, "Accumulator is summing correctly")
     }
     
-    func testTurnEndShouldAddPointsInAccumulatorToPlayer1ScoreOnPlayer1Turn(){
-        var game = PigModel()
-        game.rollDice()
-        game.rollDice()
-        game.rollDice()
-        
-        let accValue = game.getScoreAccumulator()
-        game.endCurrentTurn()
-        XCTAssert(game.getPlayer1Score() == accValue, "Ending a turn should add points to player 1's score")
+    func testTurnEndShouldAddPointsInAccumulatorToPlayer1ScoreOnPlayerTurnAndZeroPointsInAccumulator(){
+        for i in 1 ... 2{
+            rollMultiple(diceValue: 2, numberOfRolls: 2)
+            game.endCurrentTurn()
+            XCTAssert(game.getScore(forPlayer: i) == 4, "Ending a turn should add 4 points to player 1's score")
+            XCTAssert(game.getScoreAccumulator() == 0, "After Turn, the accumulator should be set to zero")
+        }
     }
-    
-    func testTurnEndShouldZeroPointsInAccumulator(){
-        var game = PigModel()
-        game.rollDice()
-        game.rollDice()
-        
-        game.endCurrentTurn()
-        XCTAssert(game.getScoreAccumulator() == 0, "After Turn, the accumulator should be set to zero")
-    }
-    func testTurnEndShouldAddPointsInAccumulatorToPlayer2ScoreOnPlayer2Turn(){
-        var game = PigModel()
-        game.rollDice()
-        game.endCurrentTurn()
-        game.rollDice()
-        let accValue = game.getScoreAccumulator()
-        game.endCurrentTurn()
-        XCTAssert(game.getPlayer2Score() == accValue, "Ending player 2's turn should add points to player 2's score")
-    }
-    
 
+    func testTurnEndShouldAddPointsInAccumulatorToPlayer2ScoreOnPlayer2Turn(){
+        game.endCurrentTurn()
+        game.processRoll(playerRolled: 2)
+        game.endCurrentTurn()
+        XCTAssert(game.getScore(forPlayer: 2) == 2, "Ending player 2's turn should add points to player 2's score")
+    }
+    
+    func testDieRollOf1EndsCurrentPlayerTurn(){
+        game.processRoll(playerRolled: 2)
+        game.processRoll(playerRolled: 1)
+        XCTAssert(game.isPlayer1Turn() == false, "Player 1 rolled a 1 and now it is player 2's turn")
+    }
+    
+    func testDieRollOf1DoesNotAddAccumulatorToPlayerScore(){
+        game.processRoll(playerRolled: 2)
+        game.processRoll(playerRolled: 1)
+        XCTAssert(game.getScore(forPlayer: 1) == 0, "Player 1 rolled a 1 and now gets no points")
+        XCTAssert(game.getScoreAccumulator() == 0, "Accumulator is properly zeroed out")
+    }
+    
+    
 }

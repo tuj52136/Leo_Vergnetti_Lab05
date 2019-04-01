@@ -41,27 +41,44 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Now-MJ-2Ll">
-                                <rect key="frame" x="105" y="598" width="30" height="30"/>
+                                <rect key="frame" x="105" y="600" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Roll"/>
+                                <connections>
+                                    <action selector="rollButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d6t-QU-lX4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdJ-X3-b5H">
                                 <rect key="frame" x="240" y="598" width="33" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Hold"/>
+                                <connections>
+                                    <action selector="holdButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5iu-JY-Yw4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNw-da-llx">
                                 <rect key="frame" x="92" y="560" width="191" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Game"/>
+                                <connections>
+                                    <action selector="continueButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hzo-8l-HCb"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accumulator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-fB-9Re">
+                                <rect key="frame" x="70" y="380" width="234" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="accumulatorLabel" destination="FLT-fB-9Re" id="L9J-Bc-yFL"/>
+                        <outlet property="continueButton" destination="DNw-da-llx" id="Tba-te-Rni"/>
                         <outlet property="holdButton" destination="vdJ-X3-b5H" id="PYg-HL-JDe"/>
-                        <outlet property="newGameButton" destination="DNw-da-llx" id="Tba-te-Rni"/>
                         <outlet property="player1ScoreLabel" destination="1ft-Tb-x2J" id="wsx-k1-RQF"/>
                         <outlet property="player1ScoreProgress" destination="mck-Bz-eEi" id="55d-Xf-5hM"/>
                         <outlet property="player2ScoreLabel" destination="KxI-Zu-gSy" id="TB9-Mz-WHj"/>
