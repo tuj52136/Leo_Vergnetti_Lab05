@@ -88,5 +88,12 @@ class Leo_Vergnetti_Lab05Tests: XCTestCase {
         XCTAssert(game.getScoreAccumulator() == 0, "Accumulator is properly zeroed out")
     }
     
+    func testGameIsOverWhenPlayerScores100(){
+        rollMultiple(diceValue: 5, numberOfRolls: 19)
+        game.endCurrentTurn()
+        game.processRoll(playerRolled: 1)
+        game.processRoll(playerRolled: 5)
+        XCTAssert(game.testVictory() == true, "Player 1 wins when score and accumulator is greater than 100")
+    }
     
 }

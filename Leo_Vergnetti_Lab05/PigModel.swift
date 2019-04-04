@@ -13,6 +13,7 @@ struct PigModel {
     private var scores = [0, 0]
     private var scoreAccumulator = 0
     private var currentTurn = 1
+    
     public func getScore(forPlayer player: Int) -> Int{
         return scores[player - 1]
     }
@@ -41,5 +42,8 @@ struct PigModel {
             scoreAccumulator = 0
             endCurrentTurn()
         }
+    }
+    public func testVictory() -> Bool{
+        return scoreAccumulator + scores[currentTurn - 1] >= 100
     }
 }
